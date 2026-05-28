@@ -1,0 +1,30 @@
+package com.financial_manager.financial_manager.Security;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.web.SecurityFilterChain;
+
+@Configuration
+public class SecurityConfig {
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
+        http
+                .authorizeHttpRequests(auth -> auth.anyRequest().permitAll()
+                )
+                .formLogin(form -> form
+                        .loginPage("/loginredirecionado") // Página mostrada quando o utilizador nao esta autenticado
+                        .loginProcessingUrl("/login")
+                        .usernameParameter("email")
+                        .failureUrl("/login?errologin")
+                        .defaultSuccessUrl("/?loginsucesso", true)
+                        .permitAll()
+                )
+                .logout(logout -> logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/?logoutsucesso")
+                        .permitAll()
+                );
+        return http.build();
+    }
+}
