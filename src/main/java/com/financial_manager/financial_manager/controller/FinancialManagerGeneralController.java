@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class FinancialManagerGeneral_controller {
+public class FinancialManagerGeneralController {
 
     @GetMapping("/")
     public String home(){

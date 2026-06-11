@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+    <body>
+        <form th:action="@{/createaccount}"
+              th:object="${usersDTO}" method="post">
+
+              <label>Username (will be used as access credentials)</label>
+              <input th:field="*{username}" type="text" placeholder="Enter username">
+
+              <label>Full Name</label>
+              <input th:field="*{fullname}" type="text" placeholder="Enter full name">
+
+              <label>Password)</label>
+              <input th:field="*{password}" type="password" placeholder="Enter password">
+
+              <button type="submit">Submit</button>
+
+        </form>
+
+        <script th:if="${createaccountsuccess}">alert("account created")</script>
+    </body>
+</html>
